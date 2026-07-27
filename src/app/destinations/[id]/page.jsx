@@ -1,5 +1,9 @@
+
+
+import { EditModal } from '@/components/EditModal';
 import Image from 'next/image';
 import React from 'react';
+import { BiEdit } from 'react-icons/bi';
 import { FaRegCalendar } from 'react-icons/fa';
 import { LuMapPin } from 'react-icons/lu';
 
@@ -11,8 +15,11 @@ const DestinationsDetailsPage = async ({ params }) => {
 
     const { _id, imageUrl, price, destinationName, duration, country, description } = destination;
     return (
-        <div className='mx-w-7xl mx-auto'>
+        <div className='max-w-7xl mx-auto'>
+            <EditModal destination={destination} />
+
             <Image
+            className='w-full h-100 object-cover'
                 alt={destinationName}
                 src={imageUrl}
                 height={500}
