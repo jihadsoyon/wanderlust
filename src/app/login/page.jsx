@@ -1,35 +1,41 @@
 'use client'
 
-import { Card } from '@heroui/react';
+import { Card, Separator } from '@heroui/react';
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { Check } from '@gravity-ui/icons';
 import { authClient } from '@/lib/auth-client';
 import { redirect } from 'next/navigation';
+import { FcGoogle } from 'react-icons/fc';
 
 const LoginPage = () => {
 
-    const onSubmit = async(e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries())
-        
-        const {data, error} = await authClient.signIn.email({
+
+        const { data, error } = await authClient.signIn.email({
             email: user.email,
             password: user.password
         })
- 
-    console.log({data, error});
-     
-        if(data){
+
+        console.log({ data, error });
+
+        if (data) {
             redirect('/')
         }
 
-        if(error){
+        if (error) {
             //toast
             alert("Error Occured")
         }
 
+    }
+    const handleGoogleSignin = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        })
     }
 
     return (
@@ -86,6 +92,16 @@ const LoginPage = () => {
 
                     </div>
                 </Form>
+                <div className="flex items-center gap-3 w-96 mx-auto my-4">
+                    <Separator className="flex-1" />
+                    <span className="whitespace-nowrap text-sm text-gray-500">
+                        Or Sign up with
+                    </span>
+                    <Separator className="flex-1" />
+                </div>
+                <div>
+                    <Button onClick={handleGoogleSignin} className={'w-full rounded-none'} variant='outline'><FcGoogle />Sign in with google</Button>
+                </div>
             </Card>
         </div>
     );
