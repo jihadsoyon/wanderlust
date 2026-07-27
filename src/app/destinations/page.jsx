@@ -8,7 +8,7 @@ const DestinationsPage = async() => {
     return (
         <div className='max-w-7xl mx-auto'>
             <h1>All Destinations</h1>
-            <div className='grid grid-cols-4 gap-3'>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 {
                     destinations.map(destination => <DestinationCard key={destination._id} destinations={destination}/>)
                 }
