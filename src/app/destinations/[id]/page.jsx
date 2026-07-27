@@ -1,5 +1,6 @@
 
 
+import { DeleteAlert } from '@/components/DeleteAlert';
 import { EditModal } from '@/components/EditModal';
 import Image from 'next/image';
 import React from 'react';
@@ -16,10 +17,12 @@ const DestinationsDetailsPage = async ({ params }) => {
     const { _id, imageUrl, price, destinationName, duration, country, description } = destination;
     return (
         <div className='max-w-7xl mx-auto'>
-            <EditModal destination={destination} />
-
+            <div className='flex items-center gap-3 justify-end'>
+                <EditModal destination={destination} />
+                <DeleteAlert destination={destination} />
+            </div>
             <Image
-            className='w-full h-100 object-cover'
+                className='w-full h-100 object-cover'
                 alt={destinationName}
                 src={imageUrl}
                 height={500}
@@ -45,8 +48,8 @@ const DestinationsDetailsPage = async ({ params }) => {
                     </div>
                 </div>
                 <h1 className='mt-2 text-2xl font-bold text-cyan-600'>Overview</h1>
-               <p>{description}</p>
-               
+                <p>{description}</p>
+
             </div>
         </div>
     );

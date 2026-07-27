@@ -28,13 +28,13 @@ export function EditModal({ destination }) {
     }
     return (
         <Modal>
-            <div className='flex justify-end'>
+
                 <Modal.Trigger>
-                    <button className={'rounded-none mt-5 mb-3 flex items-center gap-1.5 border px-3'}>
+                    <button className={'rounded-none mt-5 mb-3 flex items-center gap-1.5 border px-5 py-1 cursor-pointer hover:bg-gray-100'}>
                         <BiEdit /> Edit
                     </button>
                 </Modal.Trigger>
-            </div>
+
             <Modal.Backdrop>
                 <Modal.Container placement="auto">
                     <Modal.Dialog className="sm:max-w-xl">
